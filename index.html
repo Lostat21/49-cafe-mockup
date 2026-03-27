@@ -363,6 +363,181 @@
     </div>
   </footer>
 
+  <!-- Floating Message Component - Copy this entire block into your website -->
+<style>
+  /* Floating Message Styles */
+  .floating-message {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    max-width: 360px;
+    width: auto;
+    transition: transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1), opacity 0.2s;
+    cursor: pointer;
+    filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.12)) drop-shadow(0 3px 5px rgba(0, 0, 0, 0.05));
+  }
+
+  .message-card {
+    background: rgba(22, 34, 48, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 1rem 1.5rem 1rem 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    transition: all 0.25s ease;
+  }
+
+  .floating-message:hover .message-card {
+    background: rgba(22, 34, 48, 0.98);
+    border-color: rgba(255, 255, 255, 0.45);
+    transform: scale(1.02);
+  }
+
+  .msg-icon {
+    background: #3b82f6;
+    width: 42px;
+    height: 42px;
+    border-radius: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+  }
+
+  .msg-text {
+    flex: 1;
+  }
+
+  .msg-title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
+    color: white;
+    margin-bottom: 0.2rem;
+  }
+
+  .msg-description {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.35;
+  }
+
+  .close-msg {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s;
+    flex-shrink: 0;
+    font-weight: bold;
+  }
+
+  .close-msg:hover {
+    background: rgba(255, 70, 70, 0.75);
+  }
+
+  .floating-message.hidden {
+    display: none;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 550px) {
+    .floating-message {
+      bottom: 18px;
+      right: 18px;
+      left: 18px;
+      max-width: calc(100% - 36px);
+    }
+    .message-card {
+      padding: 0.8rem 1rem 0.8rem 1.2rem;
+    }
+    .msg-icon {
+      width: 36px;
+      height: 36px;
+      font-size: 1.3rem;
+    }
+    .msg-description {
+      font-size: 0.8rem;
+    }
+  }
+
+  /* Accessibility focus ring */
+  .close-msg:focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+    border-radius: 2rem;
+  }
+</style>
+
+<div id="floatingMsg" class="floating-message" role="dialog" aria-label="persistent notification">
+  <div class="message-card">
+    <div class="msg-icon">
+      ℹ
+    </div>
+    <div class="msg-text">
+      <div class="msg-title">✨ Information</div>
+      <div class="msg-description">
+        This is just a mock-up of what your website may look like, and it can be changed according to your preference.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const floatingMsgElement = document.getElementById('floatingMsg');
+    const closeBtn = document.getElementById('closeFloatingBtn');
+
+    // Hide message
+    function hideFloatingMessage() {
+      if (floatingMsgElement) {
+        floatingMsgElement.classList.add('hidden');
+        floatingMsgElement.setAttribute('aria-hidden', 'true');
+      }
+    }
+
+    // Show message (call this if you need to restore it programmatically)
+    function showFloatingMessage() {
+      if (floatingMsgElement) {
+        floatingMsgElement.classList.remove('hidden');
+        floatingMsgElement.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    // Close button event
+    if (closeBtn) {
+      closeBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        hideFloatingMessage();
+      });
+    }
+
+    // Optional: Press Escape to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && floatingMsgElement && !floatingMsgElement.classList.contains('hidden')) {
+        hideFloatingMessage();
+      }
+    });
+
+    // Message is visible by default
+    showFloatingMessage();
+  })();
+</script>
+  
   <script>
     const menuData = {
       breakfast: [{name:"English Breakfast", desc:"Free-range eggs, sausage, bacon, beans, tomato", price:"£16.5"},{name:"Avocado & Poached Eggs", desc:"Sourdough, chili flakes, feta", price:"£12.8"},{name:"Belgian Waffles", desc:"Maple syrup, berries, cream", price:"£11.2"}],
