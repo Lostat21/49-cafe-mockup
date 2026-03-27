@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <title>49 Cafe | Website Mockup</title>
+  <!-- Tailwind CSS + Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #FFFFFF;
+    }
+    .font-serif-alt {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    :root {
+      --bark: #452D24;
+      --stone: #B8AF9E;
+      --pure-white: #FFFFFF;
+      --linen: #D8D3C0;
+      --blush: #FFB7C5;
+    }
+    .btn-luxury {
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(69, 45, 36, 0.08);
+    }
+    .btn-luxury:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -8px rgba(69, 45, 36, 0.2);
+    }
+    .hero-gradient-luxury {
+      background: linear-gradient(125deg, #452D24 0%, #6f4a3a 50%, #452D24 100%);
+    }
+    ::selection {
+      background-color: #FFB7C5;
+      color: #452D24;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link.active {
+      color: #FFB7C5;
+      font-weight: 600;
+    }
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #FFB7C5;
+      border-radius: 2px;
+    }
+    .menu-category-btn.active {
+      background-color: #452D24;
+      color: white;
+      box-shadow: 0 4px 12px rgba(69,45,36,0.2);
+    }
+    /* Menu bar inside hero - blended background */
+    .hero-nav-blended {
+      background: rgba(69, 45, 36, 0.3);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    /* Mobile menu button always visible */
+    #mobileMenuBtn {
+      display: block;
+      cursor: pointer;
+      z-index: 60;
+    }
+    @media (min-width: 768px) {
+      #mobileMenuBtn {
+        display: none;
+      }
+    }
+    /* Mobile menu styles - fully visible */
+    .mobile-menu-active {
+      display: flex !important;
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <main>
+    <!-- ==================== PAGE 1: HOME ==================== -->
+    <div id="homePage" class="page-content">
+      <!-- Hero Section with Integrated Menu Bar Inside -->
+      <section class="hero-gradient-luxury min-h-[900px] relative overflow-hidden">
+        <!-- Integrated Menu Bar - inside hero, blended background -->
+        <div class="hero-nav-blended w-full z-50 relative">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 sm:py-5 flex items-center justify-between">
+            <a href="#" onclick="showPage('home')" class="text-xl sm:text-2xl md:text-3xl font-serif-alt font-bold tracking-tight text-white drop-shadow-md">✦ 49 Cafe</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8 lg:gap-9 font-medium text-sm tracking-wide">
+              <a href="#" onclick="showPage('home')" class="nav-link text-white/90 hover:text-[#FFB7C5] transition-colors duration-200" data-page="home">HOME</a>
+              <a href="#" onclick="showPage('gallery')" class="nav-link text-white/90 hover:text-[#FFB7C5] transition-colors duration-200" data-page="gallery">GALLERY</a>
+              <a href="#" onclick="showPage('menu')" class="nav-link text-white/90 hover:text-[#FFB7C5] transition-colors duration-200" data-page="menu">MENU</a>
+              <a href="#" onclick="showPage('story')" class="nav-link text-white/90 hover:text-[#FFB7C5] transition-colors duration-200" data-page="story">OUR STORY</a>
+              <a href="#" onclick="showPage('contact')" class="nav-link text-white/90 hover:text-[#FFB7C5] transition-colors duration-200" data-page="contact">CONTACT</a>
+            </div>
+            
+            <div class="flex gap-2 sm:gap-3 items-center">
+              <button onclick="showPage('contact')" class="bg-[#FFB7C5] text-[#452D24] px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold btn-luxury shadow-md hover:bg-white transition whitespace-nowrap">RESERVE</button>
+              <!-- Mobile menu button - ALWAYS VISIBLE on mobile -->
+              <button id="mobileMenuBtn" class="md:hidden text-white p-1 focus:outline-none active:scale-95 transition">
+                <span class="material-symbols-outlined text-2xl sm:text-3xl">menu</span>
+              </button>
+            </div>
+          </div>
+          <!-- Mobile Menu Dropdown - FIXED: fully visible when toggled -->
+          <div id="mobileMenu" class="hidden md:hidden bg-[#452D24]/95 backdrop-blur-xl px-6 py-5 flex-col gap-4 border-t border-white/20 shadow-2xl w-full left-0 z-[100]">
+            <a href="#" onclick="showPage('home'); closeMobileMenu()" class="text-white py-2 text-base font-medium hover:text-[#FFB7C5] transition flex items-center gap-3"><span class="material-symbols-outlined text-[#FFB7C5]">home</span> HOME</a>
+            <a href="#" onclick="showPage('gallery'); closeMobileMenu()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition flex items-center gap-3"><span class="material-symbols-outlined text-[#FFB7C5]">collections</span> GALLERY</a>
+            <a href="#" onclick="showPage('menu'); closeMobileMenu()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition flex items-center gap-3"><span class="material-symbols-outlined text-[#FFB7C5]">restaurant_menu</span> MENU</a>
+            <a href="#" onclick="showPage('story'); closeMobileMenu()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition flex items-center gap-3"><span class="material-symbols-outlined text-[#FFB7C5]">history_edu</span> OUR STORY</a>
+            <a href="#" onclick="showPage('contact'); closeMobileMenu()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition flex items-center gap-3"><span class="material-symbols-outlined text-[#FFB7C5]">contact_mail</span> CONTACT</a>
+          </div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 mt-8 md:mt-12 pb-20">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="text-white">
+              <span class="inline-block px-4 py-1.5 bg-[#FFB7C5]/20 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider mb-6">Bloomsbury's Finest</span>
+              <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif-alt font-bold leading-[1.1] tracking-tight mb-6">Sanctuary for<br><span class="text-[#FFB7C5]">Study & Savor</span></h1>
+              <p class="text-base sm:text-lg text-[#D8D3C0] max-w-md mb-8 md:mb-10 leading-relaxed">Where literary heritage meets contemporary luxury. Curated coffee, artisanal cuisine, and quiet elegance in the heart of London.</p>
+              <div class="flex flex-wrap gap-4 sm:gap-5">
+                <button onclick="showPage('menu')" class="bg-[#FFB7C5] text-[#452D24] px-6 sm:px-8 py-3 rounded-full font-bold flex items-center gap-2 btn-luxury shadow-lg text-sm sm:text-base">Explore Menu <span class="material-symbols-outlined text-lg">arrow_forward</span></button>
+                <button onclick="showPage('contact')" class="border border-white/50 text-white px-6 sm:px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all text-sm sm:text-base">Book a Table</button>
+              </div>
+            </div>
+            <div class="relative hidden lg:block">
+              <div class="rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-all duration-700">
+                <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800" alt="Luxury cafe interior" class="w-full h-[520px] object-cover">
+              </div>
+              <div class="absolute -bottom-6 -left-8 bg-[#D8D3C0] p-5 rounded-2xl shadow-xl max-w-xs">
+                <p class="font-serif-alt font-bold text-[#452D24] italic text-lg">“Where deadlines meet decadence”</p>
+                <p class="text-[#452D24]/70 text-xs mt-1">⭐ Voted Best Study Cafe 2025</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Home Highlights -->
+      <section class="py-20 sm:py-28 px-6 bg-[#FEFAF5]">
+        <div class="max-w-7xl mx-auto text-center">
+          <span class="text-[#FFB7C5] font-bold tracking-widest text-xs uppercase">The Experience</span>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif-alt font-bold text-[#452D24] mt-3 mb-6">A Legacy of Taste & Tranquility</h2>
+          <p class="text-[#6f5a4c] max-w-2xl mx-auto mb-12 sm:mb-16 px-4">Nestled in the literary heart of Bloomsbury, 49 Cafe offers an unparalleled atmosphere for scholars, creatives, and connoisseurs.</p>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
+            <div class="p-5 sm:p-6"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FFB7C5]/20 flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-2xl sm:text-3xl text-[#452D24]">coffee</span></div><h3 class="text-lg sm:text-xl font-bold text-[#452D24]">Artisanal Roasting</h3><p class="text-[#6f5a4c] text-xs sm:text-sm mt-2">Single-origin beans, small-batch roasted in Shoreditch.</p></div>
+            <div class="p-5 sm:p-6"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FFB7C5]/20 flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-2xl sm:text-3xl text-[#452D24]">menu_book</span></div><h3 class="text-lg sm:text-xl font-bold text-[#452D24]">Curated Library</h3><p class="text-[#6f5a4c] text-xs sm:text-sm mt-2">Over 2,000 volumes, quiet study booths & private nooks.</p></div>
+            <div class="p-5 sm:p-6"><div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#FFB7C5]/20 flex items-center justify-center mx-auto mb-4"><span class="material-symbols-outlined text-2xl sm:text-3xl text-[#452D24]">dinner_dining</span></div><h3 class="text-lg sm:text-xl font-bold text-[#452D24]">Seasonal Gastronomy</h3><p class="text-[#6f5a4c] text-xs sm:text-sm mt-2">British ingredients with modern European flair.</p></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PAGE 2: GALLERY ==================== -->
+    <div id="galleryPage" class="page-content hidden">
+      <div class="bg-[#452D24] sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between">
+          <a href="#" onclick="showPage('home')" class="text-xl sm:text-2xl font-serif-alt font-bold tracking-tight text-white">✦ 49 Cafe</a>
+          <div class="hidden md:flex items-center gap-8 lg:gap-9 font-medium text-sm">
+            <a href="#" onclick="showPage('home')" class="text-white/80 hover:text-[#FFB7C5] transition">HOME</a>
+            <a href="#" onclick="showPage('gallery')" class="text-[#FFB7C5] font-semibold transition">GALLERY</a>
+            <a href="#" onclick="showPage('menu')" class="text-white/80 hover:text-[#FFB7C5] transition">MENU</a>
+            <a href="#" onclick="showPage('story')" class="text-white/80 hover:text-[#FFB7C5] transition">OUR STORY</a>
+            <a href="#" onclick="showPage('contact')" class="text-white/80 hover:text-[#FFB7C5] transition">CONTACT</a>
+          </div>
+          <div class="flex gap-2 sm:gap-3">
+            <button onclick="showPage('contact')" class="bg-[#FFB7C5] text-[#452D24] px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold">RESERVE</button>
+            <button id="mobileMenuBtn2" class="md:hidden text-white p-1"><span class="material-symbols-outlined text-2xl">menu</span></button>
+          </div>
+        </div>
+        <div id="mobileMenu2" class="hidden md:hidden bg-[#452D24]/95 backdrop-blur-xl px-6 py-5 flex-col gap-4 border-t border-white/20">
+          <a href="#" onclick="showPage('home'); closeMobileMenu2()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition">HOME</a>
+          <a href="#" onclick="showPage('gallery'); closeMobileMenu2()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition">GALLERY</a>
+          <a href="#" onclick="showPage('menu'); closeMobileMenu2()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition">MENU</a>
+          <a href="#" onclick="showPage('story'); closeMobileMenu2()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition">OUR STORY</a>
+          <a href="#" onclick="showPage('contact'); closeMobileMenu2()" class="text-white py-2 text-base hover:text-[#FFB7C5] transition">CONTACT</a>
+        </div>
+      </div>
+      <section class="py-20 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-16">
+            <span class="text-[#FFB7C5] font-bold tracking-widest text-xs uppercase">Visual Narrative</span>
+            <h2 class="text-4xl sm:text-5xl font-serif-alt font-bold text-[#452D24] mt-3">Moments at 49 Cafe</h2>
+            <div class="w-20 h-1 bg-[#FFB7C5] mx-auto mt-4 rounded-full"></div>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 auto-rows-[260px] sm:auto-rows-[280px]">
+            <div class="rounded-2xl overflow-hidden shadow-lg group relative"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition duration-700"><div class="absolute inset-0 bg-gradient-to-t from-[#452D24]/60 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"><span class="text-white font-semibold">The Writer's Corner</span></div></div>
+            <div class="rounded-2xl overflow-hidden shadow-lg group relative"><img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition"><div class="absolute inset-0 bg-[#452D24]/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4"><span class="text-white">Latte Artistry</span></div></div>
+            <div class="rounded-2xl overflow-hidden shadow-lg group relative"><img src="https://images.unsplash.com/photo-1559925393-8be0ec41b50d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition"><div class="absolute inset-0 bg-[#452D24]/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4"><span class="text-white">Patisserie Selection</span></div></div>
+            <div class="rounded-2xl overflow-hidden shadow-lg group relative sm:col-span-2"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d744264?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition"><div class="absolute inset-0 bg-gradient-to-r from-[#452D24]/50 to-transparent opacity-0 group-hover:opacity-100 transition flex items-end p-4"><span class="text-white">Grand Reading Hall</span></div></div>
+            <div class="rounded-2xl overflow-hidden shadow-lg group relative"><img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-105 transition"><div class="absolute inset-0 bg-[#452D24]/40 opacity-0 group-hover:opacity-100 transition flex items-end p-4"><span class="text-white">Pour Over Ritual</span></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PAGE 3: MENU ==================== -->
+    <div id="menuPage" class="page-content hidden">
+      <div class="bg-[#452D24] sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between">
+          <a href="#" onclick="showPage('home')" class="text-xl sm:text-2xl font-serif-alt font-bold tracking-tight text-white">✦ 49 Cafe</a>
+          <div class="hidden md:flex items-center gap-8 lg:gap-9 font-medium text-sm">
+            <a href="#" onclick="showPage('home')" class="text-white/80 hover:text-[#FFB7C5] transition">HOME</a>
+            <a href="#" onclick="showPage('gallery')" class="text-white/80 hover:text-[#FFB7C5] transition">GALLERY</a>
+            <a href="#" onclick="showPage('menu')" class="text-[#FFB7C5] font-semibold transition">MENU</a>
+            <a href="#" onclick="showPage('story')" class="text-white/80 hover:text-[#FFB7C5] transition">OUR STORY</a>
+            <a href="#" onclick="showPage('contact')" class="text-white/80 hover:text-[#FFB7C5] transition">CONTACT</a>
+          </div>
+          <button onclick="showPage('contact')" class="bg-[#FFB7C5] text-[#452D24] px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold">RESERVE</button>
+        </div>
+      </div>
+      <section class="py-20 px-6 bg-[#FEFAF5]">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-12">
+            <span class="text-[#FFB7C5] font-bold tracking-widest text-xs uppercase">Culinary Journey</span>
+            <h2 class="text-4xl sm:text-5xl font-serif-alt font-bold text-[#452D24] mt-3">The 49 Cafe Menu</h2>
+            <p class="text-[#6f5a4c] max-w-xl mx-auto mt-4 px-4">Seasonally inspired, ethically sourced — a symphony of flavors.</p>
+          </div>
+          <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+            <button data-category="breakfast" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Breakfast</button>
+            <button data-category="lunch" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Lunch</button>
+            <button data-category="coffee" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Coffee</button>
+            <button data-category="wraps" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Wraps</button>
+            <button data-category="salad" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Salad</button>
+            <button data-category="sandwich" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Sandwich</button>
+            <button data-category="pasta" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Pasta</button>
+            <button data-category="tea" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Tea</button>
+            <button data-category="softdrinks" class="menu-cat-btn px-4 sm:px-5 py-2 rounded-full bg-[#D8D3C0] text-[#452D24] font-medium text-xs sm:text-sm transition-all">Soft Drinks</button>
+          </div>
+          <div id="menuItemsContainer" class="grid md:grid-cols-2 gap-x-8 sm:gap-x-12 gap-y-8 sm:gap-y-10"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PAGE 4: OUR STORY ==================== -->
+    <div id="storyPage" class="page-content hidden">
+      <div class="bg-[#452D24] sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between">
+          <a href="#" onclick="showPage('home')" class="text-xl sm:text-2xl font-serif-alt font-bold tracking-tight text-white">✦ 49 Cafe</a>
+          <div class="hidden md:flex items-center gap-8 lg:gap-9 font-medium text-sm">
+            <a href="#" onclick="showPage('home')" class="text-white/80 hover:text-[#FFB7C5] transition">HOME</a>
+            <a href="#" onclick="showPage('gallery')" class="text-white/80 hover:text-[#FFB7C5] transition">GALLERY</a>
+            <a href="#" onclick="showPage('menu')" class="text-white/80 hover:text-[#FFB7C5] transition">MENU</a>
+            <a href="#" onclick="showPage('story')" class="text-[#FFB7C5] font-semibold transition">OUR STORY</a>
+            <a href="#" onclick="showPage('contact')" class="text-white/80 hover:text-[#FFB7C5] transition">CONTACT</a>
+          </div>
+          <button onclick="showPage('contact')" class="bg-[#FFB7C5] text-[#452D24] px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold">RESERVE</button>
+        </div>
+      </div>
+      <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div class="order-2 lg:order-1"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800" alt="Historic building" class="rounded-2xl shadow-2xl w-full h-[350px] object-cover"></div>
+            <div class="order-1 lg:order-2"><span class="text-[#FFB7C5] font-bold tracking-wider text-sm uppercase">Heritage & Vision</span><h2 class="text-3xl sm:text-4xl md:text-5xl font-serif-alt font-bold text-[#452D24] mt-3 mb-6">Our Story</h2><p class="text-[#6f5a4c] leading-relaxed mb-4">Founded in 2018 by literary scholar Eleanor Ashworth, 49 Cafe was born from a desire to merge the quiet dignity of a private library with the warmth of a European café. Housed in a Georgian townhouse on Great Russell Street, we've become a beloved sanctuary for writers, academics, and dreamers.</p><p class="text-[#6f5a4c] leading-relaxed mb-6">Every detail — from the hand-bound menus to the rare tea collection — reflects our commitment to craftsmanship and slow living.</p><div class="flex flex-wrap gap-3"><span class="text-[#452D24] font-bold">✦ Ethical sourcing</span><span class="text-[#452D24] font-bold">✦ Sustainable design</span><span class="text-[#452D24] font-bold">✦ Literary soul</span></div></div>
+          </div>
+          <div class="mt-16 sm:mt-24 text-center"><div class="bg-[#D8D3C0] p-8 sm:p-12 rounded-3xl"><p class="text-xl sm:text-2xl font-serif-alt italic text-[#452D24]">"A place where ideas are brewed as carefully as our espresso."</p><p class="mt-4 text-[#452D24]/70">— 49 Cafe Manifesto</p></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ==================== PAGE 5: CONTACT US FORM ==================== -->
+    <div id="contactPage" class="page-content hidden">
+      <div class="bg-[#452D24] sticky top-0 z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 py-4 flex items-center justify-between">
+          <a href="#" onclick="showPage('home')" class="text-xl sm:text-2xl font-serif-alt font-bold tracking-tight text-white">✦ 49 Cafe</a>
+          <div class="hidden md:flex items-center gap-8 lg:gap-9 font-medium text-sm">
+            <a href="#" onclick="showPage('home')" class="text-white/80 hover:text-[#FFB7C5] transition">HOME</a>
+            <a href="#" onclick="showPage('gallery')" class="text-white/80 hover:text-[#FFB7C5] transition">GALLERY</a>
+            <a href="#" onclick="showPage('menu')" class="text-white/80 hover:text-[#FFB7C5] transition">MENU</a>
+            <a href="#" onclick="showPage('story')" class="text-white/80 hover:text-[#FFB7C5] transition">OUR STORY</a>
+            <a href="#" onclick="showPage('contact')" class="text-[#FFB7C5] font-semibold transition">CONTACT</a>
+          </div>
+          <button onclick="showPage('contact')" class="bg-[#FFB7C5] text-[#452D24] px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-semibold">RESERVE</button>
+        </div>
+      </div>
+      <section class="py-20 px-6 bg-[#FEFAF5]">
+        <div class="max-w-6xl mx-auto">
+          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16">
+            <div>
+              <span class="text-[#FFB7C5] font-bold tracking-wider text-sm uppercase">Reach Out</span>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-serif-alt font-bold text-[#452D24] mt-3 mb-6">Contact 49 Cafe</h2>
+              <p class="text-[#6f5a4c] mb-8">For reservations, private events, or general inquiries — we're here to assist you.</p>
+              <div class="space-y-6">
+                <div class="flex gap-4 items-start">
+                  <span class="material-symbols-outlined text-[#FFB7C5] text-2xl">location_on</span>
+                  <div>
+                    <p class="font-semibold text-[#452D24] text-lg">49 Cafe — Bloomsbury Sanctuary</p>
+                    <p class="text-[#6f5a4c]">42 Great Russell Street, Bloomsbury<br>London WC1B 3PA, United Kingdom</p>
+                    <p class="text-[#6f5a4c] text-sm mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">directions_walk</span> 2 min from British Museum | 5 min from Russell Square</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">call</span>
+                  <div>
+                    <p class="font-semibold text-[#452D24]">+44 (0)20 7946 0138</p>
+                    <p class="text-[#6f5a4c] text-sm">Reservations & Concierge (9am–9pm daily)</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">mail</span>
+                  <div>
+                    <p class="text-[#452D24]">hello@49cafe.com</p>
+                    <p class="text-[#6f5a4c] text-sm">Private events: events@49cafe.com</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">schedule</span>
+                  <div>
+                    <p class="text-[#452D24] font-medium">Opening Hours</p>
+                    <p class="text-[#6f5a4c]">Monday – Friday: 7:00 – 20:00<br>Saturday – Sunday: 8:30 – 21:00</p>
+                  </div>
+                </div>
+                <div class="flex gap-4 items-center">
+                  <span class="material-symbols-outlined text-[#FFB7C5]">directions_subway</span>
+                  <div>
+                    <p class="text-[#452D24] font-medium">Nearest Tube Stations</p>
+                    <p class="text-[#6f5a4c]">Holborn (Central Line) — 3 min walk<br>Russell Square (Piccadilly Line) — 5 min walk</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white p-6 sm:p-8 md:p-10 rounded-2xl shadow-xl border border-[#D8D3C0]/60">
+              <h3 class="text-2xl font-serif-alt font-bold text-[#452D24] mb-6">Send a Message</h3>
+              <form id="contactForm">
+                <div class="mb-5"><input type="text" id="contactName" placeholder="Full Name" class="w-full border-b border-[#D8D3C0] py-3 focus:border-[#FFB7C5] outline-none transition bg-transparent" required></div>
+                <div class="mb-5"><input type="email" id="contactEmail" placeholder="Email Address" class="w-full border-b border-[#D8D3C0] py-3 focus:border-[#FFB7C5] outline-none transition bg-transparent" required></div>
+                <div class="mb-5"><input type="tel" id="contactPhone" placeholder="Phone (Optional)" class="w-full border-b border-[#D8D3C0] py-3 focus:border-[#FFB7C5] outline-none transition bg-transparent"></div>
+                <div class="mb-6"><textarea id="contactMessage" rows="4" placeholder="Your message / reservation details..." class="w-full border-b border-[#D8D3C0] py-3 focus:border-[#FFB7C5] outline-none transition bg-transparent" required></textarea></div>
+                <button type="submit" class="w-full bg-[#452D24] text-white py-3.5 rounded-full font-semibold btn-luxury hover:bg-[#5e3e31] transition">Send Inquiry</button>
+                <p id="formFeedback" class="text-sm mt-3 text-center text-green-600 hidden"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="py-10 sm:py-12 px-6 border-t border-[#D8D3C0] bg-[#F8F4EC]">
+    <div class="max-w-7xl mx-auto grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 text-center sm:text-left">
+      <div><span class="font-serif-alt font-bold text-xl text-[#452D24]">✦ 49 Cafe</span><p class="text-[#6f5a4c] text-sm mt-3">© 2025 — Sanctuary for Study & Savor.</p><p class="text-[#6f5a4c] text-xs mt-2">42 Great Russell St, Bloomsbury, London</p></div>
+      <div class="flex flex-col gap-2"><a href="#" onclick="showPage('story')" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Our Story</a><a href="#" onclick="showPage('gallery')" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Gallery</a><a href="#" onclick="showPage('contact')" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Contact</a></div>
+      <div class="flex flex-col gap-2"><a href="#" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Instagram</a><a href="#" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Newsletter</a><a href="#" class="text-[#452D24]/70 hover:text-[#FFB7C5] transition">Careers</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const menuData = {
+      breakfast: [{name:"English Breakfast", desc:"Free-range eggs, sausage, bacon, beans, tomato", price:"£16.5"},{name:"Avocado & Poached Eggs", desc:"Sourdough, chili flakes, feta", price:"£12.8"},{name:"Belgian Waffles", desc:"Maple syrup, berries, cream", price:"£11.2"}],
+      lunch: [{name:"Roast Chicken Breast", desc:"Mashed potatoes, greens, thyme jus", price:"£18.5"},{name:"Pan-Seared Sea Bass", desc:"Fennel salad, lemon butter", price:"£22.0"},{name:"Wild Mushroom Risotto", desc:"Truffle oil, parmesan", price:"£17.5"}],
+      coffee: [{name:"Flat White", desc:"Double espresso, microfoam", price:"£4.2"},{name:"Single Origin Pour Over", desc:"Ethiopia Yirgacheffe", price:"£6.5"},{name:"Caramel Macchiato", desc:"Vanilla, caramel drizzle", price:"£5.2"},{name:"Cortado", desc:"Balanced espresso with warm milk", price:"£3.9"}],
+      wraps: [{name:"Grilled Halloumi Wrap", desc:"Hummus, roasted veg, tahini", price:"£11.5"},{name:"Chicken Caesar Wrap", desc:"Grilled chicken, parmesan", price:"£12.5"},{name:"Falafel & Beetroot Wrap", desc:"Vegan garlic sauce", price:"£10.8"}],
+      salad: [{name:"Superfood Kale Salad", desc:"Quinoa, pomegranate, almond", price:"£12.0"},{name:"Burrata & Peach Salad", desc:"Arugula, balsamic glaze", price:"£13.8"}],
+      sandwich: [{name:"Reuben Sandwich", desc:"Corned beef, Swiss cheese, sauerkraut", price:"£13.5"},{name:"Smoked Salmon & Cream Cheese", desc:"Bagel, capers, dill", price:"£14.2"}],
+      pasta: [{name:"Spaghetti Carbonara", desc:"Guanciale, pecorino", price:"£16.0"},{name:"Lobster Ravioli", desc:"Cherry tomato sauce", price:"£24.0"}],
+      tea: [{name:"Earl Grey", desc:"Bergamot black tea", price:"£4.0"},{name:"Matcha Latte", desc:"Ceremonial matcha, oat milk", price:"£5.2"},{name:"Jasmine Pearl", desc:"Delicate green tea", price:"£4.5"}],
+      softdrinks: [{name:"House Lemonade", desc:"Mint, elderflower", price:"£4.5"},{name:"Craft Cola", desc:"Artisanal cola", price:"£4.2"},{name:"Sparkling Water", desc:"500ml", price:"£3.5"}]
+    };
+    let activeCategory = "breakfast";
+    function renderMenu(category) {
+      const container = document.getElementById("menuItemsContainer");
+      if(!container) return;
+      const items = menuData[category] || [];
+      container.innerHTML = items.map(item => `<div class="flex justify-between items-start border-b border-[#E2D9CF] pb-4 group"><div><h4 class="text-lg sm:text-xl font-bold text-[#452D24] group-hover:text-[#FFB7C5] transition">${item.name}</h4><p class="text-[#6f5a4c] text-xs sm:text-sm mt-1">${item.desc}</p></div><span class="text-[#FFB7C5] font-bold text-base sm:text-lg ml-4 whitespace-nowrap">${item.price}</span></div>`).join('');
+      document.querySelectorAll('.menu-cat-btn').forEach(btn => btn.classList.remove('active', 'bg-[#452D24]', 'text-white'));
+      const activeBtn = Array.from(document.querySelectorAll('.menu-cat-btn')).find(btn => btn.dataset.category === category);
+      if(activeBtn) { activeBtn.classList.add('active', 'bg-[#452D24]', 'text-white'); activeBtn.classList.remove('bg-[#D8D3C0]'); }
+    }
+    function showPage(pageId) {
+      document.querySelectorAll('.page-content').forEach(page => page.classList.add('hidden'));
+      document.getElementById(`${pageId}Page`).classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if(pageId === 'menu') renderMenu(activeCategory);
+      closeAllMobileMenus();
+    }
+    function closeAllMobileMenus() {
+      document.querySelectorAll('#mobileMenu, #mobileMenu2').forEach(menu => menu?.classList.add('hidden'));
+    }
+    function initMenuEvents() { 
+      document.querySelectorAll('.menu-cat-btn').forEach(btn => btn.addEventListener('click', () => { if(btn.dataset.category) { activeCategory = btn.dataset.category; renderMenu(activeCategory); } })); 
+      renderMenu('breakfast'); 
+    }
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => { 
+      e.preventDefault(); 
+      const name=document.getElementById('contactName')?.value, email=document.getElementById('contactEmail')?.value, msg=document.getElementById('contactMessage')?.value; 
+      if(name&&email&&msg){ 
+        document.getElementById('formFeedback').innerHTML="✓ Thank you! We'll respond within 24 hours."; 
+        document.getElementById('formFeedback').classList.remove('hidden'); 
+        e.target.reset(); 
+        setTimeout(()=>document.getElementById('formFeedback')?.classList.add('hidden'),4000); 
+      } else alert("Please fill all required fields."); 
+    });
+    
+    // Mobile menu handlers - ensures menu icon is always visible and functional
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+    const mobileBtn2 = document.getElementById('mobileMenuBtn2');
+    const mobileMenu2 = document.getElementById('mobileMenu2');
+    if(mobileBtn2 && mobileMenu2) {
+      mobileBtn2.addEventListener('click', (e) => {
+        e.stopPropagation();
+        mobileMenu2.classList.toggle('hidden');
+      });
+    }
+    function closeMobileMenu() { if(mobileMenu) mobileMenu.classList.add('hidden'); }
+    function closeMobileMenu2() { if(mobileMenu2) mobileMenu2.classList.add('hidden'); }
+    
+    showPage('home');
+    initMenuEvents();
+  </script>
+</body>
+</html>
